@@ -1,0 +1,48 @@
+LeetCode 177. Nth Highest Salary
+题目
+Write a SQL query to get the nth highest salary from the Employee table.
+
++----+--------+
+| Id | Salary |
++----+--------+
+| 1  | 100    |
+| 2  | 200    |
+| 3  | 300    |
++----+--------+
+For example, given the above Employee table, the nth highest salary where n = 2 is 200. If there is no nth highest salary, then the query should return null.
+
++------------------------+
+| getNthHighestSalary(2) |
++------------------------+
+| 200                    |
++------------------------+
+题目大意
+写一个SQL函数来从表中获得第n 个最高工资
+
+解题思路
+SQL 函数
+CREATE FUNCTION getNthHighestSalary(N INT) 
+RETURNS INT  -- 返回数据类型
+BEGIN -- 函数体开始
+-- 声明 : 变量 类型
+DECLARE  M INT;
+-- 变量赋值
+SET M=N-1;
+
+  RETURN (
+       SELECT DISTINCT Salary FROM Employee ORDER BY Salary DESC LIMIT M,1);
+ );  -- 返回这条语句的结果
+END
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+Declare M INT;
+SET M= N-1;
+  RETURN (
+      # Write your MySQL query statement below.
+      select Distinct Salary
+              from Employee
+              order by Salary Desc
+              Limit M, 1
+      );
+END
