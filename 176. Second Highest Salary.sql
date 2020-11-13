@@ -24,3 +24,14 @@ ORDER BY Salary DESC
 LIMIT 1 OFFSET 1
 
 #The use of ORDER BY, LIMIT, OFFSET
+
+However, this solution will be judged as 'Wrong Answer' if there is no such second highest salary since there might be only one record in this table. To overcome this issue, we can take this as a temp table.
+
+SELECT
+    (SELECT DISTINCT
+            Salary
+        FROM
+            Employee
+        ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1) AS SecondHighestSalary
+;
